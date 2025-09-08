@@ -37,7 +37,7 @@ const readme_generator = async (req, res) => {
 
     const data = await runAiAgent(owner, repo);
     console.log(data);
-    res.status(200).send(data);
+    res.status(200).send({readme : data});
   } catch (err) {
     console.error("Error in README generation:", err);
     res.status(500).send("Internal Server Error");
