@@ -15,8 +15,13 @@ import session from "express-session";
 dotenv.config() ; 
 
 const app = express();
-// Allowing cross-origin requests
-app.use(cors());
+
+// CORS Config for credentials
+app.use(cors({
+  origin: "http://localhost:5173", // your frontend
+  credentials: true
+}));
+
 
 // Session Config
 app.use(session({
