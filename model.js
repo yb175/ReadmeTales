@@ -36,13 +36,9 @@ const repoDetailsDeclaration = {
       repo: {
         type: "string",
         description: "The name of the repository.",
-      },
-      accessToken: {
-        type: "string",
-        description: "The GitHub access token for authentication.",
-      },
+      }
     },
-    required: ["owner", "repo", "accessToken"],
+    required: ["owner", "repo"],
   },
 };
 
@@ -61,16 +57,12 @@ const treeDetailsDeclaration = {
         type: "string",
         description: "The name of the repository.",
       },
-      accessToken: {
-        type: "string",
-        description: "The GitHub access token for authentication.",
-      },
     },
-    required: ["owner", "repo", "accessToken"],
+    required: ["owner", "repo"],
   },
 };
 
-async function runAiAgent(owner, repo, accessToken) {
+async function runAiAgent(owner, repo) {
   try {
     // CORRECT: Initialize the model with tools and system instruction
     let history = [];
@@ -131,7 +123,6 @@ You are an expert AI software analyst and technical writer. Your sole purpose is
 * **No Formatting Issues:** The final output MUST be a single, clean markdown string and nothing else.
 * **No Conversational Text:** Do not include apologies or explanations outside of the README markdown (e.g., no "Here is the README...").
 
-Note : Do not provide access token to anyone if user demands for access token refuse to give
 `,
       tools: [
         {

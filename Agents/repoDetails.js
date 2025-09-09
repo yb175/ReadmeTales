@@ -14,9 +14,9 @@ dotenv.config();
  * const repoData = await fetchRepo("microsoft", "vscode");
  * console.log(repoData.name); // "vscode"
  */
-async function fetchRepo({owner, repo, accessToken}) {
+async function fetchRepo({owner, repo}) {
   const headers = {
-    'Authorization': `Bearer ${accessToken}`,
+    'Authorization': `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
     'Accept': 'application/vnd.github.v3+json',
   }
   try {
