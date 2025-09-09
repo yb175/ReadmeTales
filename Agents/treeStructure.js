@@ -20,9 +20,9 @@ import dotenv from "dotenv";
  */
 
 dotenv.config();
-async function fetchTree({ owner, repo }) {
+async function fetchTree({ owner, repo, accessToken }) {
   const headers = {
-    Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${accessToken}`,
     Accept: "application/vnd.github.v3+json",
   };
   try {

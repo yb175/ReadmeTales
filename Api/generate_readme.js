@@ -34,8 +34,8 @@ const readme_generator = async (req, res) => {
 
     const owner = parts[0];
     const repo = parts[1];
-
-    const data = await runAiAgent(owner, repo);
+    const accessToken = req.session.access_token;
+    const data = await runAiAgent(owner, repo, accessToken);
     console.log(data);
     res.status(200).send({readme : data});
   } catch (err) {
