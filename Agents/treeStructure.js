@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 /**
  * Fetches the complete file and folder tree of a GitHub repository.
  * 
@@ -17,10 +18,17 @@
  * const tree = await fetchTree('microsoft', 'vscode');
  * console.log(tree);
  */
+
+dotenv.config();
 async function fetchTree({ owner, repo }) {
+    const headers = {
+        'Authorization': `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+    }
     try {
         const response = await fetch(
             `https://api.github.com/repos/${owner}/${repo}/git/trees/main?recursive=1`
+            , { headers }
         );
         const data = await response.json();
         if (!data.tree || !Array.isArray(data.tree)) {

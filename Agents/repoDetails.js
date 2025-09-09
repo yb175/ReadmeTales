@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 /**
  * Fetches metadata of a GitHub repository using the GitHub REST API.
  *
@@ -13,6 +15,10 @@
  * console.log(repoData.name); // "vscode"
  */
 async function fetchRepo({owner, repo}) {
+  const headers = {
+    'Authorization': `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+    'Accept': 'application/vnd.github.v3+json',
+  }
   try {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
     const data = await response.json();
