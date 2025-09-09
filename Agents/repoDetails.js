@@ -16,13 +16,20 @@ dotenv.config();
  */
 async function fetchRepo({owner, repo}) {
   const headers = {
-    'Authorization': `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
-    'Accept': 'application/vnd.github.v3+json',
-  }
+    Authorization: `Bearer ${accessToken || process.env.GITHUB_ACCESS_TOKEN}`,
+    Accept: "application/vnd.github.v3+json",
+  };
   try {
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`,{headers});
      if (!response.ok) {
       throw new Error(`GitHub API responded with status: ${response.status}`);
+    }
+    if (response.status === 401) {
+      return { tree: [], error: "Unauthorized: Access token may be expired" };
+    }
+
+    if(response.status === 404){
+      return { tree: [], error: "Repository not found" };
     }
     const data = await response.json();
     return data;

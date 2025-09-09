@@ -36,9 +36,13 @@ const repoDetailsDeclaration = {
       repo: {
         type: "string",
         description: "The name of the repository.",
-      }
+      },
+      accessToken: {
+        type: "string",
+        description: "The GitHub access token for authentication.",
+      },
     },
-    required: ["owner", "repo"],
+    required: ["owner", "repo", "accessToken"],
   },
 };
 
@@ -57,12 +61,16 @@ const treeDetailsDeclaration = {
         type: "string",
         description: "The name of the repository.",
       },
+      accessToken: {
+        type: "string",
+        description: "The GitHub access token for authentication.",
+      },
     },
-    required: ["owner", "repo"],
+    required: ["owner", "repo", "accessToken"],
   },
 };
 
-async function runAiAgent(owner, repo) {
+async function runAiAgent(owner, repo, accessToken) {
   try {
     // CORRECT: Initialize the model with tools and system instruction
     let history = [];

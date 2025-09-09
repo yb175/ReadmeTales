@@ -35,8 +35,13 @@ const readme_generator = async (req, res) => {
     const owner = parts[0];
     const repo = parts[1];
     const accessToken = req.session.access_token;
-    const data = await runAiAgent(owner, repo);
-    console.log(data);
+    if(accessToken) {
+      console.log("Access token Received");
+    }else{
+      console.log("maybe error is session forming")
+    }
+
+    const data = await runAiAgent(owner, repo, accessToken);
     res.status(200).send({readme : data});
   } catch (err) {
     console.error("Error in README generation:", err);
