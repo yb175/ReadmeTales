@@ -21,8 +21,6 @@ const githubAuth = async (req, res) => {
         });
 
         const data = await result.json();
-        console.log("GitHub Response:", data);
-        console.log(data) ;
         const access_token = data.access_token;
 
         if (!access_token) {
