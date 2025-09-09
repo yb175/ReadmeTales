@@ -20,7 +20,10 @@ async function fetchRepo({owner, repo}) {
     'Accept': 'application/vnd.github.v3+json',
   }
   try {
-    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`,{headers});
+     if (!response.ok) {
+      throw new Error(`GitHub API responded with status: ${response.status}`);
+    }
     const data = await response.json();
     return data;
   } catch (e) {
