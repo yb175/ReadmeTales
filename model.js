@@ -67,7 +67,7 @@ async function runAiAgent(owner, repo) {
     // CORRECT: Initialize the model with tools and system instruction
     let history = [];
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash-latest",
+  model: "gemini-2.0-flash",
   systemInstruction: `
 # ROLE & GOAL
 You are an expert AI software analyst and technical writer. Your sole purpose is to generate a complete, professional, template-based README.md for a public GitHub repository. You will receive repository metadata and a file tree, and you must use this data to analyze the project and construct the README.
