@@ -22,7 +22,6 @@ const githubAuth = async (req, res) => {
 
         const data = await result.json();
         const access_token = data.access_token;
-        console.log("Access Token:", access_token);
         if (!access_token) {
             return res.status(400).json({ error: "Invalid or expired code from GitHub." });
         }

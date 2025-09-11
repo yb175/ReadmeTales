@@ -180,6 +180,7 @@ You are an expert AI software analyst and technical writer. Your sole purpose is
 
         for (const call of functionCalls) {
           const { name, args } = call;
+          args.accessToken = accessToken ; 
           const funCall = availableTools[name];
           try {
             const apiResponse = await funCall(args);
