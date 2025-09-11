@@ -21,6 +21,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 async function fetchTree({ owner, repo, accessToken}) {
+  if(accessToken){
+    console.log("Using access token");
+  }
+  else {
+    console.log("access token not received");
+  }
   const headers = {
     Authorization: `Bearer ${accessToken || process.env.GITHUB_ACCESS_TOKEN}`,
     Accept: "application/vnd.github.v3+json",
